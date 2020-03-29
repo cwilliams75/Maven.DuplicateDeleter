@@ -21,10 +21,25 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
 
+        Integer[] minusDuplicates = new Integer[0];
+        Integer[] arr;
+        int occurrences = 0;
 
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] == array[j]) {
+                    occurrences++;
+                }
+            }
+            if (occurrences < maxNumberOfDuplications) {
+                arr = Arrays.copyOf(minusDuplicates, minusDuplicates.length+1);
+                arr[arr.length-1] = array[i];
+                minusDuplicates = arr;
+            }
+            occurrences = 0;
+        }
+        return minusDuplicates;
 
-
-        return new Integer[0];
     }
 
     @Override
